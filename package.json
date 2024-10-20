@@ -1,0 +1,76 @@
+{
+    "name": "my-input-extension",
+    "description": "My Input Extension - A Webview View API Sample",
+    "version": "0.0.1",
+    "publisher": "your-name",
+    "private": true,
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-repo/my-input-extension"
+    },
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "extensionKind": [
+        "ui",
+        "workspace"
+    ],
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
+    "main": "./out/extension.js",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "activitybar1",
+                    "title": "My Input Extension",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "activitybar1": [
+                {
+                    "type": "webview",
+                    "id": "myInputExtension.inputView",
+                    "name": "Input View"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "myInputExtension.submitInput",
+                "category": "My Input Extension",
+                "title": "Submit Input"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "myInputExtension.submitInput",
+                    "group": "navigation",
+                    "when": "view == myInputExtension.inputView"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "eslint \"src/**/*.ts\"",
+        "watch": "tsc -w -p ./"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.75.0",
+        "@typescript-eslint/eslint-plugin": "^7.14.0",
+        "@typescript-eslint/parser": "^7.14.0",
+        "eslint": "^8.32.0",
+        "typescript": "^5.6.2"
+    }
+}
